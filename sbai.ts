@@ -3,10 +3,9 @@
 // import { createOpenAI } from "npm:@ai-sdk/openai"
 // import { configSchema, AIConfig } from "./src/configschema.ts"
 
-import { configSchema } from "./src/configschema.ts"
 import { syscall } from "@silverbulletmd/silverbullet/syscalls"
 
-await syscall("config.define", "ai", configSchema)
+// await syscall("config.define", "ai", configSchema)
 
 export async function getConfig() {
     const conf = await syscall("config.get", "ai", "{}")
