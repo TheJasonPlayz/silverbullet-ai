@@ -3,7 +3,8 @@ import { generateText } from "npm:ai"
 import { createOpenAI } from "npm:@ai-sdk/openai"
 import { configSchema, AIConfig } from "./src/configschema.ts"
 
-const conf = await syscall("config.define", "ai", configSchema) as AIConfig
+await syscall("config.define", "ai", configSchema)
+const conf = await syscall("config.get", "ai") as AIConfig
 
 const provider = createOpenAI({
     baseURL: conf.baseURL,
