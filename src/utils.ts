@@ -1,5 +1,4 @@
-import { editor, space } from "@silverbulletmd/silverbullet/syscalls";
-import { Space } from "../../silverbullet/common/space.ts";
+import { space } from "@silverbulletmd/silverbullet/syscalls";
 
 const contextPageName = "AI Context"
 

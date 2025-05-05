@@ -11,7 +11,7 @@ const provider = createOpenAI({
     compatibility: "compatible"
 })
 
-export async function promptAI() {
+export async function promptAI(): Promise<void> {
     const prompt = await editor.prompt("What would you like to ask me?")
     
     const { text } = await generateText({
@@ -20,5 +20,5 @@ export async function promptAI() {
         system: system
     })
 
-    editor.insertAtCursor(text)
+    return editor.insertAtCursor(text)
 }
