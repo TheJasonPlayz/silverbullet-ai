@@ -1,7 +1,11 @@
 name: silverbullet-ai
 requiredPermissions:
   - fetch
-# functions:
+functions:
+  getConfig:
+    path: sbai.ts:getConfig
+    command:
+      name: "AI: Get Configuration Options"
   # promptAI:
   #   path: sbai.ts:promptAI
   #   command:
