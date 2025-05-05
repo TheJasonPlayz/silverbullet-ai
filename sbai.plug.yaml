@@ -1,4 +1,6 @@
 name: silverbullet-ai
+requiredPermissions:
+  - fetch
 functions:
   promptAI:
     path: sbai.ts:promptAI
