@@ -1,11 +1,11 @@
-const defaultUserPrompt = `You are an assistant to the user of the personal knowledge management system Silverbullet. You can find the docs on this website: [SilverBullet](https://silverbullet.md/)`
+const defaultUserPrompt = `You are a AI assistant for a user of Silverbullet. The SilverBullet documentation can be found [here](https://silverbullet.md)`
 
 export const configSchema = {
-    description: "SilverBullet-AI Plug Config",
     type: "object",
     properties: {
       "baseURL": {
-        "type": "string"
+        "type": "string",
+        "default": "https://openrouter.ai/api/v1"
       },
       "apiKey": {
         "type": "string"
@@ -13,7 +13,7 @@ export const configSchema = {
       "modelName": {
         "type": "string"
       },
-      "userPrompt": {
+      "systemPrompt": {
         "type": "string",
         "default": defaultUserPrompt
       }
@@ -24,5 +24,5 @@ export type AIConfig = {
     baseURL: string;
     apiKey: string;
     modelName: string;
-    userPrompt: string;
+    systemPrompt: string;
 }
