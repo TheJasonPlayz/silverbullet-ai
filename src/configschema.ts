@@ -18,7 +18,7 @@ export const configSchema = `{
           "default" = defaultSystemPrompt
         }
       } 
-})`
+}`
       
 
 export type AIConfig = {

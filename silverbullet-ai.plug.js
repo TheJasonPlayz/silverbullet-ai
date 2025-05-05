@@ -16,4 +16,4 @@ var u=e=>{throw new Error("Not initialized yet")},l=typeof window>"u"&&typeof gl
           "default" = defaultSystemPrompt
         }
       } 
-})`;typeof self>"u"&&(self={syscall:()=>{throw new Error("Not implemented here")}});function r(e,...t){return globalThis.syscall(e,...t)}await r("config.define","ai",f);async function g(){let e=await r("config.get","ai","{}");console.log(e)}var y={getConfig:g},P={name:"silverbullet-ai",requiredPermissions:["fetch"],functions:{getConfig:{path:"sbai.ts:getConfig",command:{name:"AI: Get Configuration Options"}}},assets:{}},fe={manifest:P,functionMapping:y};d(y,P,self.postMessage);export{fe as plug};
+}`;typeof self>"u"&&(self={syscall:()=>{throw new Error("Not implemented here")}});function r(e,...t){return globalThis.syscall(e,...t)}await r("config.define","ai",f);async function g(){let e=await r("config.get","ai","{}");console.log(e)}var y={getConfig:g},P={name:"silverbullet-ai",requiredPermissions:["fetch"],functions:{getConfig:{path:"sbai.ts:getConfig",command:{name:"AI: Get Configuration Options"}}},assets:{}},fe={manifest:P,functionMapping:y};d(y,P,self.postMessage);export{fe as plug};
