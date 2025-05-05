@@ -1,0 +1,24 @@
+{
+  "tasks": {
+    "build": "silverbullet plug:compile -c deno.jsonc sbai.plug.yaml",
+    "watch": "silverbullet plug:compile -c deno.jsonc sbai.plug.yaml -w"
+  },
+  "lint": {
+    "rules": {
+      "exclude": ["no-explicit-any"]
+    }
+  },
+  "fmt": {
+    "exclude": [
+      "*.md",
+      "**/*.md",
+      "*.plug.js"
+    ]
+  },
+  "imports": {
+    "@silverbulletmd/silverbullet": "jsr:@silverbulletmd/silverbullet@^0.9.0",
+    "@silverbulletmd/silverbullet/syscalls": "jsr:@silverbulletmd/silverbullet@^0.9.0/syscalls",
+    "ai-sdk": "npm:ai",
+    "ai-sdk/openai": "npm:@ai-sdk/openai"
+  },
+}
