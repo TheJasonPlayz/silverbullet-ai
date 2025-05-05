@@ -1,21 +1,25 @@
 const defaultSystemPrompt = `You are a AI assistant for a user of Silverbullet. The SilverBullet documentation can be found [here](https://silverbullet.md)`
 
 export const configSchema = {
-      "baseURL": {
-        "type": "string",
-        "default": "https://openrouter.ai/api/v1"
-      },
-      "apiKey": {
-        "type": "string"
-      },
-      "modelName": {
-        "type": "string"
-      },
-      "systemPrompt": {
-        "type": "string",
-        "default": defaultSystemPrompt
+      "type": "object",
+      "properties": {
+        "baseURL": {
+          "type": "string",
+          "default": "https://openrouter.ai/api/v1"
+        },
+        "apiKey": {
+          "type": "string"
+        },
+        "modelName": {
+          "type": "string"
+        },
+        "systemPrompt": {
+          "type": "string",
+          "default": defaultSystemPrompt
+        }
+      } 
       }
-    }
+      
 
 export type AIConfig = {
     baseURL: string;
