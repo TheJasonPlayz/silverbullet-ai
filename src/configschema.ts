@@ -1,6 +1,6 @@
 const defaultSystemPrompt = `You are a AI assistant for a user of Silverbullet. The SilverBullet documentation can be found [here](https://silverbullet.md)`
 
-export const configSchema = {
+export const configSchema = `{
       "type": "object",
       "properties": {
         "baseURL": {
@@ -15,10 +15,10 @@ export const configSchema = {
         },
         "systemPrompt": {
           "type": "string",
-          "default": defaultSystemPrompt
+          "default": ${defaultSystemPrompt}
         }
       } 
-      }
+}`
       
 
 export type AIConfig = {
