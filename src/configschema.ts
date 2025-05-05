@@ -15,7 +15,7 @@ export const configSchema = `{
         },
         "systemPrompt" = {
           "type" = "string",
-          "default" = defaultSystemPrompt
+          "default" = ${defaultSystemPrompt}
         }
       } 
 }`
