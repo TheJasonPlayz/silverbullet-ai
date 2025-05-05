@@ -7,6 +7,6 @@ functions:
     command:
       name: "AI: Prompt the AI"
   getConfig:
-    path: sbai.ts:getConfig
+    path: sbai.ts:logConfig
     command:
       name: "AI: Log Configuration"
