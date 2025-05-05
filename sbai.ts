@@ -1,7 +1,10 @@
-import { editor, syscall } from "@silverbulletmd/silverbullet/syscalls";
-import { generateText } from "npm:ai"
-import { createOpenAI } from "npm:@ai-sdk/openai"
-import { configSchema, AIConfig } from "./src/configschema.ts"
+// import { editor, syscall } from "@silverbulletmd/silverbullet/syscalls";
+// import { generateText } from "npm:ai"
+// import { createOpenAI } from "npm:@ai-sdk/openai"
+// import { configSchema, AIConfig } from "./src/configschema.ts"
+
+import { configSchema } from "./src/configschema.ts"
+import { syscall } from "@silverbulletmd/silverbullet/syscalls"
 
 await syscall("config.define", "ai", configSchema)
 const conf = await syscall("config.get", "ai", "{}")
