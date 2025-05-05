@@ -1,4 +1,4 @@
-import { editor, syscall } from "@silverbulletmd/silverbullet/syscalls";
+import { editor } from "@silverbulletmd/silverbullet/syscalls";
 import { generateText } from "npm:ai"
 import { createOpenAI } from "npm:@ai-sdk/openai"
 
