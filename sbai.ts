@@ -1,5 +1,5 @@
 import { editor, syscall } from "@silverbulletmd/silverbullet/syscalls";
-import { generateText, streamText } from "npm:ai"
+import { streamText } from "npm:ai"
 import { OpenAIProvider, createOpenAI } from "npm:@ai-sdk/openai"
 import { configSchema, AIConfig, defaultConfig } from "./src/configschema.ts"
 
@@ -31,16 +31,15 @@ export async function promptAI(): Promise<void> {
 
     const prompt = await editor.prompt("What would you like to ask me?")
     
-    const { text } = await generateText({
+    const { textStream } = await streamText({
         model: provider(conf.modelName),
         prompt: prompt,
         system: conf.systemPrompt
     })
 
-    // for await (const textPart of textStream) {
-    //     editor.insertAtPos(textPart, pos)
-    // }
-    editor.insertAtPos(text, pos)
+    for await (const textPart of textStream) {
+        editor.insertAtPos(textPart, pos)
+    }
 }
 
 // await defineConfig(configSchema)
