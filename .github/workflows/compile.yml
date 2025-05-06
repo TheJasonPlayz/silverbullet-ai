@@ -33,7 +33,7 @@ jobs:
         run: |
           deno task build
           deno task install
-        working-directory: $GITHUB_WORKSPACE/silverbullet
+        working-directory: ./silverbullet
 
       - name: Compile Plug
         run: deno task build
