@@ -42,4 +42,4 @@ export async function promptAI(): Promise<void> {
     }
 }
 
-await defineConfig(configSchema)
+// await defineConfig(configSchema)
