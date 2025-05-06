@@ -24,6 +24,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: silverbulletmd/silverbullet
+          path: ./silverbullet
 
       - name: Install Deno
         uses: denoland/setup-deno@v2
@@ -32,7 +33,7 @@ jobs:
         run: |
           deno task build
           deno task install
-        working-directory: silverbullet
+        working-directory: $GITHUB_WORKSPACE/silverbullet
 
       - name: Compile Plug
         run: deno task build
