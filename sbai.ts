@@ -38,7 +38,7 @@ export async function promptAI(): Promise<void> {
     })
 
     for await (const textPart of textStream) {
-        console.log(textPart, fullText, pos)
+        console.log(textPart, pos)
     }
 }
 
