@@ -51,4 +51,3 @@ jobs:
           git add -A
           git commit -m "Update .plug.js file"
           git push
-        working-directory:
