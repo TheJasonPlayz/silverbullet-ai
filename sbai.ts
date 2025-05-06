@@ -31,16 +31,13 @@ export async function promptAI(): Promise<void> {
 
     const prompt = await editor.prompt("What would you like to ask me?")
     
-    const { textStream } = await streamText({
+    const { textStream } = streamText({
         model: provider(conf.modelName),
         prompt: prompt,
         system: conf.systemPrompt
     })
 
-    let fullText = ""
     for await (const textPart of textStream) {
-        fullText += textPart
-        await editor.insertAtPos(textPart, pos)
         console.log(textPart, fullText, pos)
     }
 }
