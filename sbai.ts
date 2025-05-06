@@ -3,7 +3,9 @@ import { streamText } from "npm:ai"
 import { OpenAIProvider, createOpenAI } from "npm:@ai-sdk/openai"
 import { configSchema, AIConfig, defaultConfig } from "./src/configschema.ts"
 
-await syscall("config.define", "ai", configSchema)
+async function defineConfig(schema: string): Promise<void> {
+    await syscall("config.define", "ai", schema)
+}
 
 async function getConfig(): Promise<AIConfig> {
     return await syscall("config.get", "ai", "{}") as AIConfig
@@ -39,3 +41,5 @@ export async function promptAI(): Promise<void> {
         editor.insertAtPos(textPart, pos)
     }
 }
+
+await defineConfig(configSchema)
