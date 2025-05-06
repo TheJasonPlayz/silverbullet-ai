@@ -1,7 +1,7 @@
 import { editor, syscall } from "@silverbulletmd/silverbullet/syscalls";
 import { streamText } from "npm:ai"
 import { OpenAIProvider, createOpenAI } from "npm:@ai-sdk/openai"
-import { configSchema, AIConfig } from "./src/configschema.ts"
+import { configSchema, AIConfig, defaultConfig } from "./src/configschema.ts"
 
 await syscall("config.define", "ai", configSchema)
 
@@ -23,7 +23,7 @@ function makeProvider(conf: AIConfig): OpenAIProvider {
 
 export async function promptAI(): Promise<void> {
     const pos = await editor.getCursor()
-    const conf = await syscall("config.get", "ai", "{}") as AIConfig
+    const conf = await syscall("config.get", "ai", defaultConfig) as AIConfig
 
     const provider = makeProvider(conf)
 
