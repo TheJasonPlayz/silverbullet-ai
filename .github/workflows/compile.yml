@@ -20,6 +20,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Clone repo
+        uses: actions/checkout@v4
+        with:
+          path: ./plug
+
       - name: Clone Silverbullet
         uses: actions/checkout@v4
         with:
@@ -37,3 +42,4 @@ jobs:
 
       - name: Compile Plug
         run: deno task build
+        working-directory: ./plug
