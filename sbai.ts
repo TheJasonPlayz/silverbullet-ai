@@ -40,7 +40,8 @@ export async function promptAI(): Promise<void> {
     let fullText = ""
     for await (const textPart of textStream) {
         fullText += textPart
-        await editor.insertAtPos(textPart, pos + fullText.length + 1)
+        await editor.insertAtPos(textPart, pos - fullText.length - 1)
+        console.log(textPart, fullText)
     }
 }
 
