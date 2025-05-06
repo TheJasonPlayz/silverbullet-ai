@@ -28,10 +28,12 @@ ${r}:`]}}function _i(e){return e?.tokens.map((t,r)=>({token:t,logprob:e.token_lo
       default = "https://openrouter.ai/api/v1"
     },
     apiKey = {
-      type = "string"
+      type = "string",
+      default = ""
     },
     modelName = {
-      type = "string"
+      type = "string",
+      default = ""
     },
     systemPrompt = {
       type = "string",

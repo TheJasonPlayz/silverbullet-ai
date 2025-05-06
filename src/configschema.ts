@@ -8,10 +8,12 @@ export const configSchema = `{
       default = "https://openrouter.ai/api/v1"
     },
     apiKey = {
-      type = "string"
+      type = "string",
+      default = ""
     },
     modelName = {
-      type = "string"
+      type = "string",
+      default = ""
     },
     systemPrompt = {
       type = "string",
