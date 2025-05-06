@@ -37,8 +37,10 @@ export async function promptAI(): Promise<void> {
         system: conf.systemPrompt
     })
 
+    let fullText = ""
     for await (const textPart of textStream) {
-        await editor.insertAtPos(textPart, pos + textPart.length)
+        fullText += textPart
+        await editor.insertAtPos(textPart, pos + fullText.length + 1)
     }
 }
 
