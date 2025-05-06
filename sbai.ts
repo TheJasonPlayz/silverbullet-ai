@@ -38,7 +38,7 @@ export async function promptAI(): Promise<void> {
     })
 
     for await (const textPart of textStream) {
-        editor.insertAtPos(textPart, pos)
+        await editor.insertAtPos(textPart, pos + textPart.length)
     }
 }
 
