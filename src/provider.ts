@@ -1,15 +1,15 @@
 import { OpenAIProvider, createOpenAI } from "npm:@ai-sdk/openai";
-import { OllamaProvider, createOllama } from "npm:ollama-ai-provider"
-import { GoogleGenerativeAIProvider, createGoogleGenerativeAI } from "npm:@ai-sdk/google"
+// import { OllamaProvider, createOllama } from "npm:ollama-ai-provider"
+// import { GoogleGenerativeAIProvider, createGoogleGenerativeAI } from "npm:@ai-sdk/google"
 import { PlugConfig } from "./plugconfig.ts";
 
 enum ProviderType {
     "openai",
-    "ollama",
-    "gemini",
+    // "ollama",
+    // "gemini",
 }
 
-type ProviderClass = OpenAIProvider | OllamaProvider | GoogleGenerativeAIProvider
+type ProviderClass = OpenAIProvider //| OllamaProvider | GoogleGenerativeAIProvider
 
 export class AIProvider {
     #type: ProviderType
@@ -32,16 +32,16 @@ export class AIProvider {
         switch (str) {
             case "openai":
                 return ProviderType.openai
-            case "ollama":
-                return ProviderType.ollama
-            case "gemini":
-                return ProviderType.gemini
+            // case "ollama":
+            //     return ProviderType.ollama
+            // case "gemini":
+            //     return ProviderType.gemini
             default:
                 throw Error("Provider Type is unknown. Must be one of " + ProviderType)
         }
     }
 
-    #makeProvider(): ProviderClass {
+    #makeProvider(): OpenAIProvider {
         switch (this.#type) {
             case ProviderType.openai:
                 return createOpenAI({
@@ -49,7 +49,7 @@ export class AIProvider {
                     baseURL: this.#config.config.baseURL,
                     compatibility: "compatible",
                 })
-            case ProviderType.ollama:
+            /*case ProviderType.ollama:
                 return createOllama({
                     baseURL: this.#config.config.baseURL
                 })
@@ -57,7 +57,7 @@ export class AIProvider {
                 return createGoogleGenerativeAI({
                     apiKey: this.#config.config.apiKey,
                     baseURL: this.#config.config.baseURL
-                })
+                })*/
         }
     }
 
