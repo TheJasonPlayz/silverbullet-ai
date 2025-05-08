@@ -3,9 +3,17 @@ requiredPermissions:
   - fetch
 functions:
   promptAI:
-    path: sbai.ts:promptAI
+    path: sbai.ts:prompt
     command:
       name: "AI: Prompt the AI"
+  promptWithPage:
+    path: sbai.ts:promptWithPage
+    command:
+      name: "AI: Prompt the AI with Page as Context"
+  promptWithSelection:
+    path: sbai.ts:promptWithSelection
+    command:
+      name: "AI: Prompt the AI with Selection as Context"
   getConfig:
     path: sbai.ts:logConfig
     command:
