@@ -23,13 +23,13 @@ export class Assistant {
     async #insertText(pos: number, context: string, prompt: string) {
         const { textStream } = this.#streamText(context, prompt)
 
-            let fullText = ""
-            for await (const textPart of textStream) {
-                await editor.insertAtPos(textPart, pos + fullText.length)
-                console.log({textPart: textPart, pos: pos, fullText: fullText})
-                fullText = fullText.concat(textPart)
-                console.log({textPart: textPart, pos: pos, fullText: fullText})
-            }
+        let fullText = ""
+        for await (const textPart of textStream) {
+            await editor.insertAtPos(textPart, pos + fullText.length)
+            console.log({textPart: textPart, pos: pos, fullText: fullText})
+            fullText = fullText.concat(textPart)
+            console.log({textPart: textPart, pos: pos, fullText: fullText})
+        }
     }
 
     logConfig(): void {

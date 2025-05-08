@@ -19,13 +19,16 @@ export class AIProvider {
 
     constructor() {
         this.#config = new PlugConfig()
-        this.#config.getConfig()
 
         this.model = this.#config.config.modelName
 
         this.#type = this.#setType(this.#config.config.provider)
 
         this.provider = this.#makeProvider()
+    }
+
+    getConfig() {
+        this.#config.getConfig()
     }
 
     #setType(str: string): ProviderType {
