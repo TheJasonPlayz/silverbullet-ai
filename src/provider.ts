@@ -1,5 +1,5 @@
 import { ConfigSchema, PlugConfig } from "./plugconfig.ts";
-import { streamText } from "npm:ai";
+import { streamText, StreamTextResult, ToolSet } from "npm:ai";
 import { createOpenAI, OpenAIProvider } from "npm:@ai-sdk/openai";
 
 type ProviderType = OpenAIProvider;
@@ -21,15 +21,19 @@ export class AIProvider {
     });
   }
 
-  public textStream(prompt: string, context?: string) {
-    let promptExtra = ""
+  public textStream(
+    prompt: string,
+    context?: string,
+  ): StreamTextResult<ToolSet, never> {
+    let promptExtra = "";
 
-    if context {
-	promptExtra = " You will use the context following: " + context
+    if (context) {
+      promptExtra = " You will use the context following: " + context;
     }
+
     return streamText({
       model: this.provider(this.config.modelName),
-      system: this.config.systemPrompt,
+      system: this.config.systemPrompt + promptExtra,
       prompt: prompt,
     });
   }
