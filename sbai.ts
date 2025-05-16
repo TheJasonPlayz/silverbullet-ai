@@ -2,8 +2,14 @@ import { AIAssistant } from "./src/assistant.ts";
 
 const assistant = new AIAssistant();
 
-const prompt = assistant.prompt;
-const promptWithSelection = assistant.promptSelection;
-const promptWithPage = assistant.promptPage;
+const prompt = async () => {
+  await assistant.prompt();
+};
+const promptWithSelection = async () => {
+  await assistant.promptSelection();
+};
+const promptWithPage = async () => {
+  await assistant.promptPage();
+};
 
 export { prompt, promptWithPage, promptWithSelection };
