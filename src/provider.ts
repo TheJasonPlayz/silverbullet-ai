@@ -19,7 +19,7 @@ export class AIProvider {
       apiKey: this.#config.apiKey,
       baseURL: this.#config.baseURL,
     });
-    console.debug(this);
+    console.log(this);
   }
 
   textStream(
@@ -32,7 +32,7 @@ export class AIProvider {
       promptExtra = " You will use the context following: " + context;
     }
 
-    console.debug({ prompt, context });
+    console.log({ prompt, context });
 
     return streamText({
       model: this.#provider(this.#config.modelName),

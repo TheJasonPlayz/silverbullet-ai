@@ -30,7 +30,7 @@ export class PlugConfig {
       "ai",
       PlugConfig.defaultConf,
     ) as ConfigSchema;
-    console.debug(config);
+    console.log(config);
     return config;
   }
 }
