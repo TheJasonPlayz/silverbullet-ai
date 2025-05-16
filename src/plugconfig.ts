@@ -25,10 +25,12 @@ export class PlugConfig {
   };
 
   static async getConfig(): Promise<ConfigSchema> {
-    return await syscall(
+    const config = await syscall(
       "config.get",
       "ai",
       PlugConfig.defaultConf,
     ) as ConfigSchema;
+    console.debug(config);
+    return config;
   }
 }

@@ -5,20 +5,21 @@ import { createOpenAI, OpenAIProvider } from "npm:@ai-sdk/openai";
 type ProviderType = OpenAIProvider;
 
 export class AIProvider {
-  private config: ConfigSchema = PlugConfig.defaultConf;
-  private provider: ProviderType;
+  #config: ConfigSchema = PlugConfig.defaultConf;
+  #provider: ProviderType;
 
   constructor() {
     (async () => {
-      this.config = await PlugConfig.getConfig();
+      this.#config = await PlugConfig.getConfig();
 
       return this;
     });
-    this.provider = createOpenAI({
+    this.#provider = createOpenAI({
       compatibility: "compatible",
-      apiKey: this.config.apiKey,
-      baseURL: this.config.baseURL,
+      apiKey: this.#config.apiKey,
+      baseURL: this.#config.baseURL,
     });
+    console.debug(this);
   }
 
   textStream(
@@ -31,9 +32,11 @@ export class AIProvider {
       promptExtra = " You will use the context following: " + context;
     }
 
+    console.debug({ prompt, context });
+
     return streamText({
-      model: this.provider(this.config.modelName),
-      system: this.config.systemPrompt + promptExtra,
+      model: this.#provider(this.#config.modelName),
+      system: this.#config.systemPrompt + promptExtra,
       prompt: prompt,
     });
   }
