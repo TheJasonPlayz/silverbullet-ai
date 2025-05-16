@@ -5,16 +5,16 @@ import {
 } from "jsr:@silverbulletmd/silverbullet@0.10.4/syscalls";
 
 export class AIAssistant {
-  private provider: AIProvider;
+  #provider: AIProvider;
 
   constructor() {
-    this.provider = new AIProvider();
+    this.#provider = new AIProvider();
   }
 
-  private async insertStream(
+  async #insertStream(
     textStream: AsyncIterable<string>,
     cursorPos: number,
-  ) {
+  ): Promise<void> {
     let textFull = "";
     for await (const textPart of textStream) {
       textFull += textPart;
@@ -22,29 +22,29 @@ export class AIAssistant {
     }
   }
 
-  public async prompt() {
+  async prompt(): Promise<void> {
     const cursorPos = await editor.getCursor();
     const prompt = await editor.prompt("What would you like to ask me?");
 
     if (prompt) {
-      const { textStream } = this.provider.textStream(prompt);
-      await this.insertStream(textStream, cursorPos);
+      const { textStream } = this.#provider.textStream(prompt);
+      await this.#insertStream(textStream, cursorPos);
     }
   }
 
-  public async promptPage() {
+  async promptPage(): Promise<void> {
     const cursorPos = await editor.getCursor();
     const prompt = await editor.prompt("What would you like to ask me?");
     const pageName = await editor.getCurrentPage();
     const pageContents = await space.readPage(pageName);
 
     if (prompt && pageContents) {
-      const { textStream } = this.provider.textStream(prompt, pageContents);
-      await this.insertStream(textStream, cursorPos);
+      const { textStream } = this.#provider.textStream(prompt, pageContents);
+      await this.#insertStream(textStream, cursorPos);
     }
   }
 
-  public async promptSelection() {
+  async promptSelection(): Promise<void> {
     const cursorPos = await editor.getCursor();
     const prompt = await editor.prompt("What would you like to ask me?");
     const selection = await editor.getSelection();
@@ -58,11 +58,11 @@ export class AIAssistant {
     );
 
     if (prompt && selectionContents) {
-      const { textStream } = this.provider.textStream(
+      const { textStream } = this.#provider.textStream(
         prompt,
         selectionContents,
       );
-      await this.insertStream(textStream, cursorPos);
+      await this.#insertStream(textStream, cursorPos);
     }
   }
 }

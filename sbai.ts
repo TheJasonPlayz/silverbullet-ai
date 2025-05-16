@@ -1,10 +1,9 @@
-// import { Assistant } from "./src/assistant.ts";
+import { AIAssistant } from "./src/assistant.ts";
 
-// const assistant = new Assistant()
-//
-// const prompt = assistant.promptWithNothing
-// const promptWithSelection = assistant.promptWithSelecton
-// const promptWithPage = assistant.promptWithPage
-// const logConfig = assistant.logConfig
-//
-// export { prompt, promptWithSelection, promptWithPage, logConfig }
+const assistant = new AIAssistant();
+
+const prompt = assistant.prompt;
+const promptWithSelection = assistant.promptSelection;
+const promptWithPage = assistant.promptPage;
+
+export { prompt, promptWithPage, promptWithSelection };
