@@ -19,6 +19,7 @@ export class AIAssistant {
     for await (const textPart of textStream) {
       textFull += textPart;
       await editor.insertAtPos(textPart, cursorPos + textFull.length);
+      console.debug({ textFull, textPart });
     }
   }
 
@@ -28,7 +29,10 @@ export class AIAssistant {
 
     if (prompt) {
       const { textStream } = this.#provider.textStream(prompt);
+      console.debug(textStream);
       await this.#insertStream(textStream, cursorPos);
+    } else {
+      throw Error("Prompt not found for 'prompt' function");
     }
   }
 
@@ -41,6 +45,11 @@ export class AIAssistant {
     if (prompt && pageContents) {
       const { textStream } = this.#provider.textStream(prompt, pageContents);
       await this.#insertStream(textStream, cursorPos);
+    } else {
+      throw Error(
+        "Prompt or page not found for 'promptPage' function. P: " + prompt +
+          " PAGE: " + pageContents,
+      );
     }
   }
 
@@ -63,6 +72,11 @@ export class AIAssistant {
         selectionContents,
       );
       await this.#insertStream(textStream, cursorPos);
+    } else {
+      throw Error(
+        "Prompt or selection not found for 'promptSelection' function. P: " +
+          prompt + " SEL: " + selectionContents,
+      );
     }
   }
 }
