@@ -21,7 +21,7 @@ export class AIProvider {
     });
   }
 
-  public textStream(
+  textStream(
     prompt: string,
     context?: string,
   ): StreamTextResult<ToolSet, never> {
