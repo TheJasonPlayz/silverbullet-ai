@@ -23,6 +23,7 @@ export class PlugConfig {
       "{}",
     ) as ConfigSchema;
 
+    console.log(config);
     return config;
   }
 
