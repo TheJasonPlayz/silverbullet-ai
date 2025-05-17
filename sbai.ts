@@ -1,4 +1,5 @@
 import { AIAssistant } from "./src/assistant.ts";
+import { PlugConfig } from "./src/plugconfig.ts";
 
 const assistant = new AIAssistant();
 
@@ -12,4 +13,8 @@ const promptWithPage = async () => {
   await assistant.promptPage();
 };
 
-export { prompt, promptWithPage, promptWithSelection };
+const logConfig = async () => {
+  await PlugConfig.logConfig();
+};
+
+export { logConfig, prompt, promptWithPage, promptWithSelection };

@@ -16,14 +16,6 @@ export class PlugConfig {
   static defaultSystem =
     "You are an assistant for a user of Silverbullet. The SilverBullet documentation can be found [here](https://silverbullet.md)";
 
-  static defaultConf: ConfigSchema = {
-    baseURL: "https://openrouter.ai/api/v1",
-    provider: ProviderName.OpenAI,
-    apiKey: "",
-    modelName: "",
-    systemPrompt: PlugConfig.defaultSystem,
-  };
-
   static async getConfig(): Promise<ConfigSchema> {
     const config = await syscall(
       "config.get",
@@ -32,5 +24,9 @@ export class PlugConfig {
     ) as ConfigSchema;
 
     return config;
+  }
+
+  static async logConfig() {
+    console.log(await PlugConfig.getConfig());
   }
 }

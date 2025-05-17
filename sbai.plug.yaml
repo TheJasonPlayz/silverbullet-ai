@@ -14,3 +14,7 @@ functions:
     path: sbai.ts:promptWithSelection
     command:
       name: "AI: Prompt the AI with Selection as Context"
+  logConfig:
+    path: sbai.ts:logConfig
+    command:
+      name: "AI: Log Config"
