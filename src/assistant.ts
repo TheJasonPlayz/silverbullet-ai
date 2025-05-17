@@ -12,9 +12,12 @@ export class AIAssistant {
   }
 
   async #insertStream(
-    textStream: AsyncIterable<string>,
+    prompt: string,
     cursorPos: number,
+    context?: string,
   ): Promise<string> {
+    const { textStream } = this.#provider.textStream(prompt, context);
+
     let textFull = "";
     for await (const textPart of textStream) {
       textFull += textPart;
@@ -36,11 +39,7 @@ export class AIAssistant {
     console.log({ cP: cursorPos, p: prompt });
 
     if (prompt) {
-      const { textStream } = this.#provider.textStream(prompt);
-
-      console.log({ tS: textStream });
-
-      return await this.#insertStream(textStream, cursorPos);
+      return await this.#insertStream(prompt, cursorPos);
     } else {
       throw Error("Prompt not found for 'prompt' function");
     }
@@ -53,8 +52,7 @@ export class AIAssistant {
     const pageContents = await space.readPage(pageName);
 
     if (prompt && pageContents) {
-      const { textStream } = this.#provider.textStream(prompt, pageContents);
-      return await this.#insertStream(textStream, cursorPos);
+      return await this.#insertStream(prompt, cursorPos, pageContents);
     } else {
       throw Error(
         "Prompt or page not found for 'promptPage' function. P: " + prompt +
@@ -77,11 +75,7 @@ export class AIAssistant {
     );
 
     if (prompt && selectionContents) {
-      const { textStream } = this.#provider.textStream(
-        prompt,
-        selectionContents,
-      );
-      return await this.#insertStream(textStream, cursorPos);
+      return await this.#insertStream(prompt, cursorPos, selectionContents);
     } else {
       throw Error(
         "Prompt or selection not found for 'promptSelection' function. P: " +
