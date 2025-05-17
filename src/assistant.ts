@@ -19,7 +19,12 @@ export class AIAssistant {
     for await (const textPart of textStream) {
       textFull += textPart;
       await editor.insertAtPos(textPart, cursorPos + textFull.length);
-      console.log({ textPart, textFull, textStream, cursorPos });
+      console.log({
+        tP: textPart,
+        tF: textFull,
+        tS: textStream,
+        cP: cursorPos,
+      });
     }
     return textFull;
   }
@@ -28,12 +33,12 @@ export class AIAssistant {
     const cursorPos = await editor.getCursor();
     const prompt = await editor.prompt("What would you like to ask me?");
 
-    console.log({ cursorPos, prompt });
+    console.log({ cP: cursorPos, p: prompt });
 
     if (prompt) {
       const { textStream } = this.#provider.textStream(prompt);
 
-      console.log({ textStream });
+      console.log({ tS: textStream });
 
       return await this.#insertStream(textStream, cursorPos);
     } else {
