@@ -19,6 +19,7 @@ export class AIAssistant {
     for await (const textPart of textStream) {
       textFull += textPart;
       await editor.insertAtPos(textPart, cursorPos + textFull.length);
+      console.log({ textPart, textFull, textStream, cursorPos });
     }
   }
 
