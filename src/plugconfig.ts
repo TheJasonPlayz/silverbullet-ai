@@ -28,9 +28,9 @@ export class PlugConfig {
     const config = await syscall(
       "config.get",
       "ai",
-      PlugConfig.defaultConf,
+      "{}",
     ) as ConfigSchema;
-    console.log(config);
+
     return config;
   }
 }
