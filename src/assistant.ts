@@ -18,6 +18,12 @@ export class AIAssistant {
   ): Promise<string> {
     const { textStream } = this.#provider.textStream(prompt, context);
 
+    console.log({
+      tS: textStream,
+      P: prompt,
+      cP: cursorPos,
+    });
+
     let textFull = "";
     for await (const textPart of textStream) {
       textFull += textPart;
@@ -26,6 +32,7 @@ export class AIAssistant {
         tP: textPart,
         tF: textFull,
         tS: textStream,
+        P: prompt,
         cP: cursorPos,
       });
     }
