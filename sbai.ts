@@ -4,13 +4,14 @@ import { PlugConfig } from "./src/plugconfig.ts";
 const assistant = new AIAssistant();
 
 const prompt = async () => {
-  await assistant.prompt();
+  console.log(await assistant.prompt());
 };
 const promptWithSelection = async () => {
-  await assistant.promptSelection();
+  console.log(await assistant.promptSelection());
 };
 const promptWithPage = async () => {
-  await assistant.promptPage();
+  console.log(await assistant.promptPage());
+  i;
 };
 
 const logConfig = async () => {

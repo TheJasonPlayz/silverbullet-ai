@@ -14,16 +14,17 @@ export class AIAssistant {
   async #insertStream(
     textStream: AsyncIterable<string>,
     cursorPos: number,
-  ): Promise<void> {
+  ): Promise<string> {
     let textFull = "";
     for await (const textPart of textStream) {
       textFull += textPart;
       await editor.insertAtPos(textPart, cursorPos + textFull.length);
       console.log({ textPart, textFull, textStream, cursorPos });
     }
+    return textFull;
   }
 
-  async prompt(): Promise<void> {
+  async prompt(): Promise<string> {
     const cursorPos = await editor.getCursor();
     const prompt = await editor.prompt("What would you like to ask me?");
 
@@ -34,13 +35,13 @@ export class AIAssistant {
 
       console.log({ textStream });
 
-      await this.#insertStream(textStream, cursorPos);
+      return await this.#insertStream(textStream, cursorPos);
     } else {
       throw Error("Prompt not found for 'prompt' function");
     }
   }
 
-  async promptPage(): Promise<void> {
+  async promptPage(): Promise<string> {
     const cursorPos = await editor.getCursor();
     const prompt = await editor.prompt("What would you like to ask me?");
     const pageName = await editor.getCurrentPage();
@@ -48,7 +49,7 @@ export class AIAssistant {
 
     if (prompt && pageContents) {
       const { textStream } = this.#provider.textStream(prompt, pageContents);
-      await this.#insertStream(textStream, cursorPos);
+      return await this.#insertStream(textStream, cursorPos);
     } else {
       throw Error(
         "Prompt or page not found for 'promptPage' function. P: " + prompt +
@@ -57,7 +58,7 @@ export class AIAssistant {
     }
   }
 
-  async promptSelection(): Promise<void> {
+  async promptSelection(): Promise<string> {
     const cursorPos = await editor.getCursor();
     const prompt = await editor.prompt("What would you like to ask me?");
     const selection = await editor.getSelection();
@@ -75,7 +76,7 @@ export class AIAssistant {
         prompt,
         selectionContents,
       );
-      await this.#insertStream(textStream, cursorPos);
+      return await this.#insertStream(textStream, cursorPos);
     } else {
       throw Error(
         "Prompt or selection not found for 'promptSelection' function. P: " +
