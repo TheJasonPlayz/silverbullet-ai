@@ -27,8 +27,12 @@ export class AIAssistant {
     const cursorPos = await editor.getCursor();
     const prompt = await editor.prompt("What would you like to ask me?");
 
+    console.log({ cursorPos, prompt });
+
     if (prompt) {
       const { textStream } = this.#provider.textStream(prompt);
+
+      console.log({ textStream });
 
       await this.#insertStream(textStream, cursorPos);
     } else {
