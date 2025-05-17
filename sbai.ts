@@ -11,7 +11,6 @@ const promptWithSelection = async () => {
 };
 const promptWithPage = async () => {
   console.log(await assistant.promptPage());
-  i;
 };
 
 const logConfig = async () => {
